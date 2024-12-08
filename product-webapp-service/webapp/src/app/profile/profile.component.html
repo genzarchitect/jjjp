@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+<div class="out">
+  <div class="section">
+<div class="container">
+    <h2>USER DETAILS</h2>
+    <form #userForm="ngForm">
+      <div class="form-group">
+        <label for="name"><strong>Name</strong></label>
+        <input class="sds" type="text" id="userName" name="userName" [(ngModel)]="newUser.userName" required [disabled]="!isEditing">
+      </div>
+      <div class="form-group">
+        <label for="email"><strong>Email</strong></label>
+        <input class="sds" type="email" id="userEmail" name="userEmail" [(ngModel)]="newUser.userEmail" required [disabled]="true" >
+      </div>
+      <div class="form-group">
+        <label for="mobile"><strong>Mobile</strong></label>
+        <input class="sds" type="text" id="userMobile" name="userMobile" [(ngModel)]="newUser.userMobile" required [disabled]="!isEditing">
+      </div>
+      <div class="form-group">
+        <label for="gender"><strong>Gender</strong></label>
+        <input class="sds" type="text" id="userGender" name="userGender" [(ngModel)]="newUser.userGender" required [disabled]="!isEditing">
+      </div>
+      <div class="form-group">
+        <label for="address"><strong>Location</strong></label>
+        <input class="sds" type="text" id="userLocation" name="userLocation" [(ngModel)]="newUser.userLocation" required [disabled]="!isEditing">
+      </div>
+    <button *ngIf="!isEditing" type="button" class="btn btn-primary btn-block mt-4 w-100"(click)="editDetails()">Edit Details</button>
+    <button *ngIf="isEditing" type="button"class="btn btn-primary btn-block mt-4 w-100" (click)="saveDetails(userForm.value)" [disabled]="!userForm.valid">Save Details</button>
+    <button *ngIf="isEditing" type="button" class="btn btn-primary btn-block mt-4 w-100"(click)="isEditing = false">Cancel</button>
+    </form>
+  </div>
+</div>
+</div>

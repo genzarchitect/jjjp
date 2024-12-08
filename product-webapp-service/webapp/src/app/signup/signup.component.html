@@ -1,0 +1,151 @@
+<app-header></app-header>
+<div class="outer">
+    <div class="container">
+        <div class="row">
+            <div class="öffset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+                <div class="panel border bg-white">
+                    <div class="panel-heading">
+                        <h3 class="pt-3 font-weight-bold">Sign-up</h3>
+                    </div>
+                    <div class="panel-body p-3">
+                        <!--<form #signupForm="ngForm" (ngSubmit)="addUser(signupForm)">-->
+                        <form #signupForm="ngForm" (submit)="save(signupForm.value)">                        
+
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-envelope-open p-2"></span>
+                                    <!--<input type="text" name="name" [(ngModel)] = "newUser.email" #name="ngModel" required minlength="4" placeholder="User Email"/>-->
+                                    <input type="text" #userEmail='ngModel' [class.error-border]='userEmail.dirty && userEmail.invalid'
+                                    required pattern='\w+@\w+\.\w+' [(ngModel)]='newUser.userEmail' name='userEmail' placeholder="User Email"/>
+                                </div>
+                            </div>
+                            <!--<div *ngIf='name.errors && name.dirty'>
+                                <small class='error-message' *ngIf="name.errors?.['required']" > Name is mandatory</small>
+                                <small class='error-message' *ngIf="name.errors?.['minlength']" > Minimum is mandatory</small>
+                            </div>-->
+                            <div *ngIf='userEmail.errors && userEmail.dirty'>
+                                <small class='error-message' *ngIf="userEmail.errors?.['required']" > Email is mandatory</small>
+                                <small class='error-message' *ngIf="userEmail.errors?.['pattern']" > Email is not valid</small> 
+                            </div>
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-lock p-2"></span>
+                                    <input [type]="type" #userPassword='ngModel' [class.error-border]='userPassword.dirty && userPassword.invalid' 
+                                    required pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9]).{8,}' [(ngModel)]='newUser.userPassword' name='userPassword' placeholder="Password"/>
+                                    <span (click)="hideShowPass()" class="fa {{eyeIcon}}"></span>
+                                </div>
+                            </div>
+                            <div *ngIf='userPassword.errors && userPassword.dirty'>
+                                <small class='error-message' *ngIf="userPassword.errors?.['required']" > Password is mandatory</small>
+                                <small class='error-message' *ngIf="userPassword.errors?.['pattern']" > Must contain at least one  number, one uppercase and lowercase letter and at least 8 or more characters</small>
+                            </div>
+                            
+                            <!--<div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-id-badge p-2"></span>
+                                    <input type="text" #userType='ngModel' [class.error-border]='userType.dirty'
+                                     required [(ngModel)]='newUser.userType' name='userType' placeholder="User Role (Owner/Player)">
+
+                                </div>
+                            </div>
+
+                            <div *ngIf='userType.errors && userType.dirty'>
+                                <small class='error-message' *ngIf="userType.errors?.['required']" > User Role is mandatory</small>
+
+                            </div>-->
+
+                            <div class="form-group pt-3" >
+                                <div class="input-field">
+                                    <span class="fa fa-dribbble p-2"></span>
+                                    <!--<label for="">Grounds</label>
+                                    <select name="groundId"> 
+                                        <option *ngFor="let ground of newGround" value="ground.groundId">{{ground.groundName}}</option>
+                                        
+                                    </select>-->
+                                    <mat-form-field>
+                                        <mat-label>User Role</mat-label>
+                                        <mat-select [(ngModel)]='newUser.userType' name='userType'>
+                                          <!--<mat-option [value]="user.userType">
+                                            {{ground.groundName}}
+                                          </mat-option>-->
+                                          <mat-option value="Owner">Owner</mat-option>
+                                          <mat-option value="Player">Player</mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+                                </div>
+                            </div>
+
+                            
+                            
+                                    
+
+
+
+
+
+
+
+
+                            <!--<div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-id-badge p-2"></span>
+                                    <input #userType='ngModel' [class.error-border]='userType.dirty'
+                                     required [(ngModel)]='newUser.userType' name='userType' placeholder="User Role (Owner/Player)">
+                                     <label for="">User Role</label>
+                                     <select id="userType">
+                                        
+                                <option value="option1">Owner</option>
+                                <option value="option2">Player</option>
+                                     </select>
+
+                                </div>
+                            </div>-->
+                                
+                                <!--<div *ngIf='userType.errors && userType.dirty'>
+                                    <small class='error-message' *ngIf="userType.errors?.['required']" > User Role is mandatory</small>
+    
+                                </div>-->
+
+
+                            <!--Owner: <input type="radio" name="Owner1">
+                            Player: <input type="radio" name="Player1">
+
+                            <p>Please select your age:</p>
+                            <input type="radio" id="age1" name="age" value="30">
+                            <label for="age1">0 - 30</label><br>
+                            <input type="radio" id="age2" name="age" value="60">
+                            <label for="age2">31 - 60</label><br>  
+                            <input type="radio" id="age3" name="age" value="100">
+                            <label for="age3">61 - 100</label><br><br>-->
+
+                            <!--<div class="form-group pt-3">
+                                <div class="input-field">
+                                    
+                                </div>
+                            </div>
+
+                                   <p>Please select your favorite Web language:</p>
+                                   <input type="radio" id="userType" #userType='ngModel' [class.error-border]='userType.dirty'
+required [(ngModel)]='newUser.userType' name='userType' value="HTML">
+                                   <label for="html">Owner</label><br>
+                                   <input type="radio" id="userType" #userType='ngModel' [class.error-border]='userType.dirty'
+required [(ngModel)]='newUser.userType' name='userType' value="CSS">
+                                   <label for="css">Player</label><br>
+
+                            <div *ngIf='userType.errors && userType.dirty'>
+                                <small class='error-message' *ngIf="userType.errors?.['required']" > User Role is mandatory</small>
+
+                            </div>-->
+
+                            <button type="submit" class="btn btn-primary btn-block mt-4 w-100" >Sign Up</button>
+                            
+                            <div class="text-center pt-4 text-muted">Already have account? <a id="forget" routerLink="/login">Sign In</a></div>
+                            <!--<input class="button" type="submit" value="Add" [disabled]="signupForm.form.invalid"/>-->
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

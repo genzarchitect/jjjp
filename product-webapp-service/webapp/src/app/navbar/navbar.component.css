@@ -1,0 +1,85 @@
+/* Navbar styling */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.0rem 2rem;  /* Increased top and bottom padding (0.25cm each) */
+  background-color: #ffffff; /* White background */
+  border-bottom: 1px solid #e0e0e0; /* Subtle border at the bottom */
+  z-index: 1000;
+  box-shadow: none; /* Remove shadow effect */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Placeholder for the fixed navbar height */
+.navbar-placeholder {
+  height: 70px;  /* Match the new navbar height (adjusted) */
+}
+
+/* Navbar brand styling */
+.navbar-brand {
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #007bff;  /* Blue color for brand */
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+
+/* Navbar item styling */
+.navbar-nav .nav-item {
+  list-style-type: none; /* Prevent list item styling */
+  margin: 0; /* Remove any margin that could push items down */
+}
+
+.navbar-nav .nav-item:first-child {
+  margin-left: 0;
+}
+
+/* Link styling */
+.navbar-nav .nav-link {
+  font-size: 1rem;
+  color: #333; /* Default text color */
+  padding: 8px 16px;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 5px; /* Slightly rounded corners */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Smooth color and background color transition */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Hover effect: Change color and add background highlight */
+.navbar-nav .nav-link:hover {
+  color: #ffffff; /* Change text color to white on hover */
+  background-color: #007bff; /* Background color change on hover */
+  border: none; /* Remove any borders that might extend below */
+}
+
+/* Active link styling */
+.navbar-nav .nav-item.active .nav-link {
+  font-weight: bold;
+  color: #007bff; /* Change text color to blue when active */
+  border-bottom: 3px solid #007bff; /* Blue underline for active link */
+  background-color: rgba(0, 123, 255, 0.1); /* Slight background highlight for active link */
+}
+
+/* Focus effect for accessibility (subtle glow effect) */
+.navbar-nav .nav-link:focus {
+  outline: none; /* Remove default focus outline */
+  /*box-shadow: 0 0 5px 2px rgba(0, 123, 255, 0.5); !* Subtle glow effect *!*/
+  border: none;  /* Ensure no border */
+}
+
+/* Optional: Remove hover effect from the active item */
+.navbar-nav .nav-item.active .nav-link:hover {
+  background-color: rgba(0, 123, 255, 0.1); /* Keep active background color when hovered */
+  color: #007bff; /* Ensure the color remains blue for active link */
+}
+
+/* Navbar links don't overflow outside of the navbar */
+.navbar-nav .nav-link {
+  height: 100%; /* Ensures height matches navbar */
+  display: flex;
+  align-items: center;
+}

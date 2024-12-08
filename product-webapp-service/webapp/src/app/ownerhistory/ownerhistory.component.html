@@ -1,0 +1,68 @@
+<!-- <app-navbar></app-navbar>
+
+<div class="container">
+
+      
+    <table>
+      <thead>
+        <tr>
+            <th>Booking Id</th>
+            <th>Booking Date</th>
+            <th>Ground Id</th>
+            <th>Player email</th>
+            <th>Owner email</th>
+            <th>Slot Id</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Slot Date</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let booking of allbookings">
+          <td>{{booking.bookingId}}</td>
+          <td>{{booking.bookingDateslot}}</td>
+          <td>{{booking.groundId}}</td>
+          <td>{{booking.playerEmail}}</td>
+          <td>{{booking.groundOwnerEmail}}</td>
+          <td>{{booking.slotId}}</td>
+          <td>{{booking.pricePaid| currency:'INR'}}</td>
+          <td>{{booking.bookingStatus}}</td>
+          <td>{{booking.slotDate}}</td>
+        </tr>
+       
+      </tbody>
+    </table>
+          
+   </div> -->
+   <app-navbar></app-navbar>
+<div class="striped">
+    <table>
+      <thead>
+        <tr>
+            <th>Booking Id</th>
+            <th>Booking Date</th>
+            <th>Ground Id</th>
+            <th>Player email</th>
+            <th>Owner email</th>
+            <th>Slot Id</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Slot Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of allbookings">
+          <td>{{booking.bookingId}}</td>
+          <td>{{booking.bookingDateslot}}</td>
+          <td>{{booking.groundId}}</td>
+          <td>{{booking.playerEmail}}</td>
+          <td>{{booking.groundOwnerEmail}}</td>
+          <td>{{booking.slotId}}</td>
+          <td>{{booking.pricePaid| currency:'INR'}}</td>
+          <td>{{booking.bookingStatus}}</td>
+          <td>{{booking.slotDate}}</td>
+        </tr>
+      </tbody>
+    </table>
+   </div>

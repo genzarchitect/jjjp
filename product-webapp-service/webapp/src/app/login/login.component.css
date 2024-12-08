@@ -1,0 +1,197 @@
+/* .outer{
+
+  
+  margin: 0;
+  background-image: url('/assets/Playground1.jpeg');
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  height: 150vh;
+  
+  
+}
+.panel-heading{
+  text-align: center;
+  margin-bottom: 10px;
+}
+#forget{
+  min-width: 100px;
+  margin-left: auto;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover{
+  text-decoration: none;
+}
+.form-inline label{
+  padding-left: 10px;
+  margin:0;
+  cursor: pointer;
+}
+.btn{
+  margin-top: 20px;
+  border-radius: 15px;
+  
+}
+.panel{
+  min-height: 380px;
+  box-shadow: 20px 20px 80px rgb(218,218,218) ;
+  border-radius: 12px;
+  margin-top: 100px;
+}
+.input-field{
+  border-radius: 5px;
+  padding:5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #add;
+  color: #4343ff;
+
+}
+.input-field.error{
+  border: 1px solid red;
+  color:red;
+}
+input[type='text'],
+input[type='password']
+{
+  border: none;
+  outline:none;
+  box-shadow: none;
+  width:100%;
+}
+.fa-eye-slash.btn{
+  border: none;
+  outline:none;
+  box-shadow: none;
+}
+
+img{
+  width:40px;
+  height:40px;
+  object-fit: cover;
+  border-radius: 50%;
+  position: relative;
+}
+
+@media screen and (min-height:200px)
+{
+.panel-body{
+  max-height: 100%;
+}
+}
+
+.error-message{
+  color: red;
+} */
+
+  .outer {
+  margin: 0;
+  background-image: url('/assets/Playground1.jpeg');
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 150vh;
+}
+
+.panel-heading {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#forget {
+  min-width: 100px;
+  margin-left: auto;
+  text-decoration: none;
+  cursor: pointer;
+  color: #007bff;
+}
+
+#forget:hover {
+  color: #0056b3;
+}
+
+.form-inline label {
+  padding-left: 10px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.btn {
+  margin-top: 20px;
+    border-radius: 15px;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.panel {
+  min-height: 380px;
+  box-shadow: 20px 20px 80px rgb(218, 218, 218);
+  border-radius: 12px;
+  margin-top: 100px;
+  transition: box-shadow 0.3s;
+}
+
+.panel:hover {
+  box-shadow: 20px 20px 100px rgba(42, 91, 165, 0.5);
+}
+
+.input-field {
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #add;
+  color: #4343ff;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.input-field.error {
+  border: 1px solid red;
+  color: red;
+}
+
+.input-field:hover {
+  border-color: #007bff;
+  color: #007bff;
+}
+
+input[type='text'],
+input[type='password'] {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  width: 100%;
+}
+
+.fa-eye-slash.btn {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  position: relative;
+}
+
+@media screen and (min-height: 200px) {
+  .panel-body {
+    max-height: 100%;
+  }
+}
+
+.error-message {
+  color: red;
+} 

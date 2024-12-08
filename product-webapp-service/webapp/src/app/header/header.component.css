@@ -1,0 +1,48 @@
+/* Enhance the navbar's appearance */
+/* .navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 2rem;
+  } */
+  .navbar {
+    position: fixed; 
+    top: 0;
+    width: 100%; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 2rem;
+    z-index: 1000; 
+  } 
+  .navbar-placeholder {
+    height: 60px; 
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 1px;
+    
+    color: #007BFF;  /* This is the default Bootstrap primary color, adjust if needed */
+  }
+  
+  /* Increase space between nav links */
+  .navbar-nav .nav-item {
+    margin-left: 15px;
+  }
+  
+  .navbar-nav .nav-item:first-child {
+    margin-left: 0;
+  }
+  
+  
+  .navbar-nav .nav-link {
+    transition: color 0.3s;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #0056b3;
+  }
+  
+  .navbar-nav .nav-item.active .nav-link {
+    font-weight: bold;
+    border-bottom: 2px solid #007BFF;
+  }
+  

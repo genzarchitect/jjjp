@@ -1,0 +1,95 @@
+<app-navbar></app-navbar>
+<div class="outer">
+    <div class="container">
+        <div class="row">
+            <div class="öffset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+                <div class="panel border bg-white">
+                    <div class="panel-heading">
+                        <h3 class="pt-3 font-weight-bold">Slot Details</h3>
+                    </div>
+                    <div class="panel-body p-3">
+                        <form #slotForm="ngForm" (submit)="save(slotForm.value)">
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-calendar p-2"></span>
+                                    <input type="text" #slotDate='ngModel' [class.error-border]='slotDate.dirty'
+                                    required [(ngModel)]='newSlot.slotDate' name='slotDate' placeholder="Slot Date" onfocus="(this.type='date')">
+                                </div>
+                            </div>
+                            <div *ngIf='slotDate.errors && slotDate.touched'>
+                                <small class='error-message' *ngIf="slotDate.errors?.['required']" > Slot date is mandatory</small>
+                            </div>
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-hourglass-start p-2"></span>
+                                    <input type="text" #slotStartTiming='ngModel' [class.error-border]='slotStartTiming.dirty'
+                                    required [(ngModel)]='newSlot.slotStartTiming' name='slotStartTiming' placeholder="Slot Starting Time" onfocus="(this.type='time')">
+                                </div>
+                            </div>
+                            <div *ngIf='slotStartTiming.errors && slotStartTiming.touched'>
+                                <small class='error-message' *ngIf="slotStartTiming.errors?.['required']" > Slot starting time is mandatory</small>
+                            </div>
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-hourglass-end p-2"></span>
+                                    <input type="text" #slotEndTiming='ngModel' [class.error-border]='slotEndTiming.dirty'
+                                    required [(ngModel)]='newSlot.slotEndTiming' name='slotEndTiming'placeholder="Slot Ending Time" onfocus="(this.type='time')">
+                                </div>
+                            </div>
+                            
+                            <div *ngIf='slotEndTiming.errors && slotEndTiming.touched'>
+                                <small class='error-message' *ngIf="slotEndTiming.errors?.['required']" > Slot ending time is mandatory</small>
+                            </div>
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-user-plus p-2"></span>
+                                    <input type="number" #numberOfPlayers='ngModel' [class.error-border]='slotEndTiming.dirty'
+                                    required [(ngModel)]='newSlot.numberOfPlayers' name='numberOfPlayers' placeholder="No. of Players">
+                                </div>
+                            </div>
+                            <div *ngIf='numberOfPlayers.errors && numberOfPlayers.touched'>
+                                <small class='error-message' *ngIf="numberOfPlayers.errors?.['required']" > No. of players is mandatory</small>
+                            </div>
+
+                            <!--<div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-hourglass-end p-2"></span>
+                                    <input type="text" #slotId='ngModel' [class.error-border]='slotId.dirty'
+                                    required [(ngModel)]='newSlot.slotId' name='slotId'placeholder="Slot Id">
+                                </div>
+                            </div>
+                            <div *ngIf='slotStartTiming.errors && slotStartTiming.touched'>
+                                <small class='error-message' *ngIf="slotStartTiming.errors?.['required']" > Slot starting time is mandatory</small>
+                            </div>-->
+
+                            <div class="form-group pt-3" >
+                                <div class="input-field">
+                                    <span class="fa fa-dribbble p-2"></span>
+                                    <!--<label for="">Grounds</label>
+                                    <select name="groundId"> 
+                                        <option *ngFor="let ground of newGround" value="ground.groundId">{{ground.groundName}}</option>
+                                        
+                                    </select>-->
+                                    <mat-form-field>
+                                        <mat-label>Ground</mat-label>
+                                        <mat-select [(ngModel)]='newSlot.groundId' name='groundId'>
+                                          <mat-option *ngFor="let ground of newGround" [value]="ground.groundId">
+                                            {{ground.groundName}}
+                                          </mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block mt-4 w-100" [disabled]="slotForm.form.invalid">Submit</button>
+
+
+                            
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>

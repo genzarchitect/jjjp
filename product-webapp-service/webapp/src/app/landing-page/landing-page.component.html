@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arena Booking Platform</title>
+
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f8fd;
+    }
+
+    .image-fit {
+      width: 450px;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .header {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://t4.ftcdn.net/jpg/05/48/10/17/360_F_548101765_PZeegwJlJvtI1t6UnF4KARs4O5pnBvwm.jpg');
+      background-size: cover;
+      padding: 60px 0;
+      color: white;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 15px;
+      margin: 10px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+      overflow: hidden;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-card img {
+      border-radius: 15px 15px 0 0;
+    }
+
+    .text-content {
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h2,
+    h5 {
+      color: #333;
+    }
+
+    p {
+      color: #666;
+    }
+
+    .img-fluid {
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+      margin-bottom: 50px;
+    }
+  </style>
+</head>
+
+<body>
+<app-header></app-header>
+  <div class="header">
+    <h1>Welcome to Arena Booking Platform</h1>
+    <p>Seamless ground booking at your fingertips</p>
+  </div>
+
+  <div class="container mt-5">
+    <div class="row">
+
+      <div class="col-lg-6">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="feature-card">
+              <img
+                src="https://media.istockphoto.com/id/637332546/photo/multi-sports-players-in-action-collage-on-grand-arena.jpg?s=612x612&w=0&k=20&c=CcmS244gEmzzqCYq2LmTDrbaduz5JXX-aAT8K8qPCzw="
+                class="image-fit" alt="Feature 1">
+              <div class="p-3">
+                <h5>Wide Range of Sports</h5>
+                <p>Choose from a variety of sports options.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="feature-card">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT5mb_DHK8D5RvjelIouMyanw1nNAQlLtcv__au4PS4FoObuSPODEFygWFr9RnmAfWMGc&usqp=CAU"
+                alt="Feature 2">
+              <div class="p-3">
+                <h5>Real-time Availability</h5>
+                <p>Check real-time availability of grounds.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="feature-card">
+              <img
+                src="https://bsmedia.business-standard.com/_media/bs/img/article/2022-07/04/full/1656922506-9167.jpg?im=FeatureCrop,size=(1200,900)"
+                class="image-fit" alt="Feature 3">
+              <div class="p-3">
+                <h5>Easy Online Payments</h5>
+                <p>Make secure online payments.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="feature-card">
+              <img src="https://productimize.com/wp-content/uploads/2018/12/Banner-img.jpg" class="image-fit"
+                alt="Feature 4">
+              <div class="p-3">
+                <h5>User-Friendly Interface</h5>
+                <p>Browse, book, and manage bookings with ease.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-6 text-content">
+        <h2>Book Your Ground Online</h2>
+        <p>Experience the convenience of booking sports grounds online. No more hassle of calling and checking
+          availability. With our Arena Booking Platform, you can easily browse available grounds, select your preferred
+          time slots, and make instant bookings.</p>
+        <img src="https://sporlocblog.files.wordpress.com/2017/05/football-grounds.jpg?w=809"
+          alt="Application Screenshot" class="img-fluid mt-4">
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

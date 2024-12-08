@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/arenas" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Game On Arena</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+          aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" routerLink="/arenas">Home</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/profile">Profile</a>
+      </li>
+      <li class="nav-item" *ngIf="isOwner()" routerLinkActive="active">
+        <a class="nav-link" routerLink="/bookings">My Bookings</a>
+      </li>
+      <li class="nav-item" *ngIf="isOwner()" routerLinkActive="active">
+        <a class="nav-link" routerLink="/addground">Add Ground</a>
+      </li>
+      <li class="nav-item" *ngIf="isOwner()" routerLinkActive="active">
+        <a class="nav-link" routerLink="/slot">Add Slot</a>
+      </li>
+      <li class="nav-item" *ngIf="!isOwner()" routerLinkActive="active">
+        <a class="nav-link" routerLink="/playerdetails">My Bookings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="signOut()">Log Out</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="navbar-placeholder"></div>

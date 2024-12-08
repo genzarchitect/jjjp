@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+<h1 class="text-center p-3 mb-5 bg-primary text-white rounded">List of Grounds</h1>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-3 mb-4" *ngFor="let ground of grounds">
+      <div class="card shadow h-100">
+        <img [src]="getImageUrl(ground?.groundId)" alt="Ground image" class="card-img-top">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ ground.groundName }}</h5>
+          <p class="card-text"><strong>Categories </strong> {{ ground.categories }}</p>
+          <p class="card-text"><strong>Status </strong> {{ ground.status }}</p>
+          <div class="mt-auto">
+            <button type="button" class="btn btn-primary btn-block mt-3" (click)="viewDetails(ground?.groundId)">View
+              Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

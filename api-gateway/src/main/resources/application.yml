@@ -1,0 +1,94 @@
+#
+#server.port=8078
+#spring.application.name=apiGateway
+#spring.cloud.gateway.discovery.locator.enabled=true
+#spring.main.web-application-type=reactive
+#eureka.client.register-with-eureka=true
+#eureka.client.fetch-registry=true
+#eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka/
+#eureka.instance.preferIpAddress=true
+#
+#management.endpoint.gateway.enabled=true
+server:
+  port: 8091
+
+spring:
+  application:
+    name: apiGateway
+
+  main:
+    web-application-type: reactive
+    allow-bean-definition-overriding: true
+
+
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            exposedHeaders: "*"
+#       routes:
+#        -  id: login-srvice
+##           uri: lb://LOGINSERVICE
+#           uri: http://localhost:8007
+#           predicates:
+#             - Path=/arena/**
+#
+#        -  id: ground-service
+##           uri: lb://GROUNDSERVICE
+#           uri: http://localhost:8005
+#           predicates:
+#             - Path=/api/v1/**
+#
+#        -  id: booking-service
+##           uri: lb://BOOKINGSERVICE
+#           uri: http://localhost:8003
+#           predicates:
+#             - Path=/booking/**
+#
+#        - id: booking-service
+##          uri: lb://BOOKINGSERVICE
+#          uri: http://localhost:8003
+#          predicates:
+#
+#             - Path=/slot/**
+#
+#
+#        -  id: payment-service
+##           uri: lb://PAYMENT-SERVICE
+#           uri: http://localhost:8009
+#           predicates:
+#             - Path=/api/v2/**
+#
+#
+#        -  id: user-service
+##           uri: lb://USERSERVICE
+#           uri: http://localhost:8011
+#           predicates:
+#             - Path=/User/**
+
+#        - id: product-webapp-service
+##          uri: lb://PRODUCT-WEBAPP-SERVICE
+#          uri: http://localhost:8013
+#          predicates:
+#            - Path=/**
+#          filters:
+#            - RewritePath=/(?<segment>/?.*), $\{segment}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

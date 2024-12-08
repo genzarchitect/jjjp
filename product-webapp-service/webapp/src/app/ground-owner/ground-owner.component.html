@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+<div *ngIf="groundForm" class="container mt-5">
+  <h2 class="text-center mb-5">Add Your Ground</h2>
+  <form [formGroup]="groundForm" (ngSubmit)="addGround()" class="card p-4">
+
+    <div class="form-group">
+      <label for="groundName">Ground Name:</label>
+      <input id="groundName" type="text" class="form-control" formControlName="groundName">
+    </div>
+
+    <div class="form-group">
+      <label for="groundEquipments">Ground Equipments:</label>
+      <input id="groundEquipments" type="text" class="form-control" formControlName="groundEquipments">
+    </div>
+
+    <div class="form-group">
+      <label for="groundOwnerEmail">Owner Email:</label>
+      <p class="form-control-static">{{ useremail }}</p>
+      <input id="groundOwnerEmail" type="hidden" [value]="useremail" formControlName="groundOwnerEmail">
+    </div>
+
+
+    <div class="form-group">
+      <label for="status">Ground Status:</label>
+      <select id="status" class="form-control" formControlName="status">
+        <option value="OPEN">Open</option>
+        <option value="CLOSED">Closed</option>
+        <option value="UNDER_MAINTENANCE">Under Maintenance</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="categories">Categories:</label>
+      <select id="categories" class="form-control" formControlName="categories">
+        <option value="CRICKET">Cricket</option>
+        <option value="FOOTBALL">Football</option>
+        <option value="SOCCER">Soccer</option>
+        <option value="BADMINTON">Badminton</option>
+        <option value="KHO-KHO">Kho-Kho</option>
+        <option value="BASKETBALL">Basketball</option>
+        <option value="BASKETBALL">Swimming</option>
+
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="openingTime">Opening Time:</label>
+      <input id="openingTime" type="time" class="form-control" formControlName="openingTime">
+    </div>
+
+    <div class="form-group">
+      <label for="closingTime">Closing Time:</label>
+      <input id="closingTime" type="time" class="form-control" formControlName="closingTime">
+    </div>
+
+    <div class="form-group">
+      <label for="pricePerSlot">Price Per Slot:</label>
+      <input id="pricePerSlot" type="number" class="form-control" formControlName="pricePerSlot">
+    </div>
+
+    <div class="form-group">
+      <label for="groundImage">Ground Image:</label>
+      <input id="groundImage" type="file" class="form-control-file" (change)="onImageSelected($event)">
+    </div>
+
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+  </form>
+</div>

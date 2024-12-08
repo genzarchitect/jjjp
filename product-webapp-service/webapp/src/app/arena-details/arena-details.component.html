@@ -1,0 +1,76 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="content">
+    <div class="arena-image">
+      <!-- Display ground image if available, else a placeholder -->
+      <img [src]="getImageUrl(ground?.groundId)" alt="Ground image" class="card-img-top">
+    </div>
+
+    <div class="details-and-booking">
+      <div class="arena-details">
+        <h2>{{ ground?.groundName }}</h2>
+        <p class="about"><strong>About the Arena...</strong></p>
+        <!-- <div class="detail-row">
+          <div><strong>Address:</strong> {{ ground?.groundAddress?.street }}, {{ ground?.groundAddress?.city }}, {{
+            ground?.groundAddress?.zip }}</div>
+          <div><strong>Categories </strong> {{ ground?.categories }}</div>
+        </div> -->
+
+        <div class="detail-row">
+          <div><strong>Opening Time </strong> {{ ground?.openingTime }}</div>
+          <div><strong>Closing Time </strong> {{ ground?.closingTime }}</div>
+        </div>
+
+        <div class="detail-row">
+          <div><strong>Status </strong> {{ ground?.status }}</div>
+          <!-- display the owner name. Need more info for this. Placeholder for now. -->
+          <div><strong>Price </strong> {{ ground?.pricePerSlot }}</div>
+        </div>
+
+        <div class="detail-row">
+          <!-- <div><strong>Owner's Name:</strong> {{ ground?.groundOwnerName }}</div> -->
+          <div><strong>Owner's Email </strong> {{ ground?.groundOwnerEmail }}</div>
+        </div>
+
+        <div class="detail-full"><strong>Equipments </strong> {{ ground?.groundEquipments }}</div>
+      </div>
+
+      <div class="booking-container">
+        <!-- The booking logic with slots -->
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" (dateChange)="onDateChange($event)"
+            readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <div class="slots-container" *ngIf="selectedDate">
+          <div *ngFor="let slot of allSlots" [class.booked]="isSlotBooked(slot)" class="slot">
+            {{ slot.slotStartTiming }} - {{ slot.slotEndTiming }}
+            <button (click)="selectSlot(slot)" [disabled]="isSlotBooked(slot)">Select</button>
+          </div>
+        </div>
+
+        <div *ngIf="selectedSlot" class="confirmation-box">
+          <h3>Confirmation</h3>
+          <div class="details">
+            <div class="detail-item">
+              <strong>Date </strong> {{ selectedDate | date }}
+            </div>
+            <div class="detail-item">
+              <strong>Slot </strong> {{ selectedSlot.slotStartTiming }} - {{ selectedSlot.slotEndTiming }}
+            </div>
+
+            <div class="detail-item">
+              <strong>Players Left </strong> {{ selectedSlot.numberOfPlayers }}
+            </div>
+          </div>
+          <button class="book-btn" (click)="bookSlot()">Confirm & Book</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
