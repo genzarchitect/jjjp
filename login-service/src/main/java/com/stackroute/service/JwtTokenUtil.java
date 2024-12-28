@@ -14,17 +14,17 @@ public class JwtTokenUtil {
 
     private final String SECRET_KEY = "yoursecretkeyfhuiefheruiferfherifheruifheurifheruifhierfhuerifherifheruifierfherfierhrfher";
 
-    // Extract username from the JWT
+
     public String extractUsername(String token) {
         return extractClaims(token).getSubject();
     }
 
-    // Extract role as a single string
+
     public String extractRole(String token) {
-        return extractClaims(token).get("role", String.class); // Adjust "role" key as per your claim structure
+        return extractClaims(token).get("role", String.class);
     }
 
-    // General method to extract all claims
+
     private Claims extractClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(SECRET_KEY)
@@ -50,9 +50,9 @@ public class JwtTokenUtil {
     public String generateToken(String username, String role) {
         return Jwts.builder()
                 .setSubject(username)
-                .claim("role", role) // Include role as a single string claim
+                .claim("role", role)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 hours validity
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
                 .compact();
     }

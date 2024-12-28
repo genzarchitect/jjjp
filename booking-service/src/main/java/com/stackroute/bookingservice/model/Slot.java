@@ -1,6 +1,7 @@
 package com.stackroute.bookingservice.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -18,11 +19,13 @@ public class Slot {
     private String slotEndTiming;
     private String status; //i think there will be no status in the slot
     private int numberOfPlayers;//why number of players
+    @Version
+    private Long version;
 
     public Slot() {
     }
 
-    public Slot(String slotId, String groundId, String slotDate, String slotStartTiming, String slotEndTiming, String status, int numberOfPlayers) {
+    public Slot(String slotId, String groundId, String slotDate, String slotStartTiming, String slotEndTiming, String status, int numberOfPlayers, Long version) {
         this.slotId = slotId;
         this.groundId = groundId;
         this.slotDate = slotDate;
@@ -30,6 +33,7 @@ public class Slot {
         this.slotEndTiming = slotEndTiming;
         this.status = status;
         this.numberOfPlayers = numberOfPlayers;
+        this.version = version;
     }
 
     public String getSlotId() {
@@ -88,6 +92,14 @@ public class Slot {
         this.numberOfPlayers = numberOfPlayers;
     }
 
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
     @Override
     public String toString() {
         return "Slot{" +
@@ -98,6 +110,7 @@ public class Slot {
                 ", slotEndTiming='" + slotEndTiming + '\'' +
                 ", status='" + status + '\'' +
                 ", numberOfPlayers=" + numberOfPlayers +
+                ", version=" + version +
                 '}';
     }
 }

@@ -6,6 +6,7 @@ import com.stackroute.bookingservice.model.Slot;
 import com.stackroute.bookingservice.repository.BookingRepo;
 import com.stackroute.bookingservice.repository.SlotRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -44,22 +45,32 @@ public class SlotServiceImpl implements SlotService{
         }
         throw new BookingIdNotFound("slot not found");
     }
-    
+
     @Override
     public Slot bookSlot(String slotId) {
-        Slot slots = slotRepo.findBySlotId(slotId);
+        for (int attempt = 0; attempt < 3; attempt++) {
+            try {
+                Slot slot = slotRepo.findBySlotId(slotId);
+                if (slot == null) {
+                    throw new RuntimeException("Slot not found");
+                }
 
-        if (slots!=null) {
-            if (slots.getNumberOfPlayers() > 0) {
-                slots.setNumberOfPlayers(slots.getNumberOfPlayers() - 1);
-                return slotRepo.save(slots);
-            } else {
-                throw new RuntimeException("Slot is fully booked");
+                if (slot.getNumberOfPlayers() <= 0) {
+                    throw new RuntimeException("Slot is fully booked");
+                }
+                slot.setNumberOfPlayers(slot.getNumberOfPlayers() - 1);
+                return slotRepo.save(slot);
+
+            } catch (OptimisticLockingFailureException e) {
+                // Retry on failure
+                if (attempt == 2) {
+                    throw new RuntimeException("Failed to book slot after multiple attempts. Please try again.");
+                }
             }
-        } else {
-            throw new RuntimeException("Slot not found");
         }
+        throw new RuntimeException("Unexpected error during slot booking");
     }
+
 
     @Override
     public Slot getSlotByDate(String slotDate) {

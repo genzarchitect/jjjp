@@ -10,13 +10,22 @@ export class SlotformService {
 
   constructor(private http:HttpClient) { }
 
+  getHeaders() {
+    const token = localStorage.getItem('authToken');
+    return {
+      Authorization: `Bearer ${token}`
+    };
+  }
+
   public save(slot:Slot){
-    return this.http.post(baseUrl+"/slot/addslot",slot);
+    const headers = this.getHeaders();
+    return this.http.post(baseUrl+"/slot/addslot",slot,{headers});
   }
 
   public getGroundByEmail(groundOwnerEmail:string)
   {
-    return this.http.get(baseUrl+"/api/v1/ground/"+groundOwnerEmail);
+    const headers = this.getHeaders();
+    return this.http.get(baseUrl+"/api/v1/ground/"+groundOwnerEmail,{headers});
   }
 
 }

@@ -12,14 +12,23 @@ export class PaymentService {
 
   constructor(private http: HttpClient) {}
 
+  getHeaders() {
+    const token = localStorage.getItem('authToken');
+    return {
+      Authorization: `Bearer ${token}`
+    };
+  }
+
   createPayment(amount: number): Observable<any> {
-    return this.http.post(`${this.baseURL}/payment/${amount}`, null);
+    const headers = this.getHeaders();
+    return this.http.post(`${this.baseURL}/payment/${amount}`, null,{headers});
   }
 
   savePaymentDetails(paymentDetails: PaymentDetails): Observable<any> {
+    const headers = this.getHeaders();
     return this.http.post(
       `${this.baseURL}/savepaymentresponse`,
-      paymentDetails
+      paymentDetails,{headers}
     );
   }
 }

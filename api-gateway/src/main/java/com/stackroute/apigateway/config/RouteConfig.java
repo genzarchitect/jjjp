@@ -8,13 +8,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RouteConfig {
     @Bean
-    public RouteLocator myRoutes(RouteLocatorBuilder builder){
+    public RouteLocator myRoutes(RouteLocatorBuilder builder, JwtAuthenticationFilter jwtAuthenticationFilter){
         return builder.routes()
                 .route(p -> p
                         .path("/arena/**")
                         .uri("http://localhost:8007"))
                 .route(p -> p
+                        .path("/api/v1/ground/image/**")
+                        .uri("http://localhost:8005/"))
+
+                .route(p -> p
                         .path("/api/v1/**")
+                        .filters(f -> f.filter(jwtAuthenticationFilter))
                         .uri("http://localhost:8005"))
                 .route(p -> p
                         .path("/booking/**")

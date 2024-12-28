@@ -3,6 +3,7 @@ package com.stackroute.bookingservice.controller;
 import com.stackroute.bookingservice.exceptions.*;
 import com.stackroute.bookingservice.model.Booking;
 import com.stackroute.bookingservice.services.BookingService;
+import com.stackroute.bookingservice.services.BookingServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,13 +12,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/booking")
 //@CrossOrigin(origins = "*")
 public class BookingController {
     @Autowired
-    public BookingService bookingService;
+    public BookingServiceImpl bookingService;
     public ResponseEntity<?> responseEntity;
 
 //    @PreAuthorize("hasRole('ROLE_Owner')")
@@ -28,10 +31,14 @@ public class BookingController {
     @GetMapping("/bookingList")
     public ResponseEntity<?> getAllBooking() {
         try {
-            List<Booking> bookings = bookingService.getAllBookingFromRepo();
-            responseEntity = new ResponseEntity<>(bookings, HttpStatus.OK);
+            CompletableFuture<List<Booking>> bookings = bookingService.getAllBookingFromRepoAsync();
+            responseEntity = new ResponseEntity<>(bookings.get(), HttpStatus.OK);
         } catch (EmptyBookingList e) {
             responseEntity = new ResponseEntity<>("Booking List is Empty", HttpStatus.BAD_REQUEST);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
         return responseEntity;
     }

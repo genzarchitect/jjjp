@@ -6,6 +6,7 @@ import com.stackroute.groundservice.exception.NoOpenGroundFound;
 import com.stackroute.groundservice.model.Ground;
 import com.stackroute.groundservice.repository.GroundRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,8 +17,6 @@ import java.util.Optional;
 @Service
 public class GroundServiceImpl implements GroundService{
 
-//    @Autowired
-//    GroundElasticRepository groundElasticRepository;
     @Autowired
     GroundRepo groundRepo;
     @Autowired
@@ -131,17 +130,19 @@ public class GroundServiceImpl implements GroundService{
         if(existingGround==null){
             throw new GroundNotFoundException("No ground found with this id");
         }
-        existingGround.setGroundName(updatedGround.getGroundName());
-        existingGround.setCategories(updatedGround.getCategories());
-        existingGround.setStatus(updatedGround.getStatus());
-        existingGround.setGroundOwnerEmail(updatedGround.getGroundOwnerEmail());
-        existingGround.setGroundAddress(updatedGround.getGroundAddress());
-        existingGround.setGroundImage(updatedGround.getGroundImage());
-        existingGround.setPricePerSlot(updatedGround.getPricePerSlot());
-        groundRepo.save(existingGround);
-        return existingGround;
+        try {
+            existingGround.setGroundName(updatedGround.getGroundName());
+            existingGround.setCategories(updatedGround.getCategories());
+            existingGround.setStatus(updatedGround.getStatus());
+            existingGround.setGroundOwnerEmail(updatedGround.getGroundOwnerEmail());
+            existingGround.setGroundAddress(updatedGround.getGroundAddress());
+            existingGround.setGroundImage(updatedGround.getGroundImage());
+            existingGround.setPricePerSlot(updatedGround.getPricePerSlot());
+            groundRepo.save(existingGround);
+            return existingGround;
+        }catch (OptimisticLockingFailureException e){
+            throw new RuntimeException("Conflict detected while updating the ground. Please retry.", e);
+
+        }
     }
-
-
-
 }

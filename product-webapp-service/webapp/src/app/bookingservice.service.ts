@@ -11,9 +11,16 @@ export class BookingserviceService {
   private booking_api_url:string=baseUrl+"/booking/getplemail";
   constructor(private httpClient:HttpClient) { }
 
+  getHeaders() {
+    const token = localStorage.getItem('authToken');
+    return {
+      Authorization: `Bearer ${token}`
+    };
+  }
+
   getAllBookings(playerEmail:string):Observable<Booking[]>{
-    
-    return this.httpClient.get<Booking[]>(`${this.booking_api_url}/${playerEmail}`);
+    const headers = this.getHeaders();
+    return this.httpClient.get<Booking[]>(`${this.booking_api_url}/${playerEmail}`,{headers});
   }
 
 }

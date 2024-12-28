@@ -1,21 +1,41 @@
 package com.stackroute.bookingservice.services;
 
+import com.stackroute.bookingservice.config.TaskExecutorConfig;
 import com.stackroute.bookingservice.exceptions.*;
 import com.stackroute.bookingservice.model.Booking;
 import com.stackroute.bookingservice.repository.BookingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ThreadPoolExecutor;
 
 @Service
 public class BookingServiceImpl implements BookingService {
     @Autowired
     public BookingRepo bookingRepo;
 
+    @Qualifier("taskExecutor")
+    @Autowired
+    public ThreadPoolTaskExecutor taskExecutor;
+
+    @Async
+    public CompletableFuture<List<Booking>> getAllBookingFromRepoAsync() {
+        try {
+            return CompletableFuture.completedFuture(getAllBookingFromRepo());
+        } catch (EmptyBookingList ex) {
+            return CompletableFuture.completedFuture(List.of());
+        } catch (Exception ex) {
+            throw new RuntimeException("Failed to fetch bookings", ex);
+        }
+    }
     @Override
     public List<Booking> getAllBookingFromRepo() {
 

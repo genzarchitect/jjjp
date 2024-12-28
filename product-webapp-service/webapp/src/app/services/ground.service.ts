@@ -16,9 +16,16 @@ export class GroundService {
   private bookingURL=baseUrl+'/booking';
 
   constructor(private http: HttpClient) {}
+  getHeaders() {
+    const token = localStorage.getItem('authToken');
+    return {
+      Authorization: `Bearer ${token}`
+    };
+  }
 
   getAllGrounds(): Observable<Ground[]> {
-    return this.http.get<Ground[]>(`${this.baseURL}/allgrounds`);
+    const headers = this.getHeaders();
+    return this.http.get<Ground[]>(`${this.baseURL}/allgrounds`,{headers});
   }
 
   // in ground.service.ts
@@ -28,7 +35,8 @@ export class GroundService {
   }
 
   getGroundById(groundId: string): Observable<Ground> {
-    return this.http.get<Ground>(`${this.baseURL}/groundId/${groundId}`);
+    const headers = this.getHeaders();
+    return this.http.get<Ground>(`${this.baseURL}/groundId/${groundId}`,{headers});
   }
 
   // Add a new ground
@@ -37,8 +45,9 @@ export class GroundService {
   // }
 
   getSlotsByDateForGround(groundId: string, date: string): Observable<Slot[]> {
+    const headers = this.getHeaders();
     return this.http.get<Slot[]>(
-      `${this.slotbaseURL}/ground/${groundId}/date/${date}`
+      `${this.slotbaseURL}/ground/${groundId}/date/${date}`,{headers}
     );
   }
 
@@ -50,15 +59,18 @@ export class GroundService {
     return this.http.post(`${this.slotbaseURL}/slot/book/${slotId}`, {});
   }
   addGround(groundData: any): Observable<any> {
-    return this.http.post(`${this.baseURL}/addground`, groundData);
+    const headers = this.getHeaders();
+    return this.http.post(`${this.baseURL}/addground`, groundData,{headers});
   }
 
   uploadImage(groundId: string, image: File): Observable<any> {
+    const headers = this.getHeaders();
     const formData: FormData = new FormData();
     formData.append('file', image, image.name);
-    return this.http.post(`${this.baseURL}/addImage/${groundId}`, formData);
+    return this.http.post(`${this.baseURL}/addImage/${groundId}`, formData,{headers});
   }
   saveBooking(bookingDetails:Booking){
-    return this.http.post(`${this.bookingURL}/addbooking`,bookingDetails)
+    const headers = this.getHeaders();
+    return this.http.post(`${this.bookingURL}/addbooking`,bookingDetails,{headers})
   }
 }

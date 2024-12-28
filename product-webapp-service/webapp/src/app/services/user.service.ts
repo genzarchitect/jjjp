@@ -8,15 +8,24 @@ import { baseUrl } from '../constant';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = baseUrl+'/User'; 
+  private apiUrl = baseUrl+'/User';
   constructor(private http: HttpClient) { }
 
+  getHeaders() {
+    const token = localStorage.getItem('authToken');
+    return {
+      Authorization: `Bearer ${token}`
+    };
+  }
+
   saveDetails(email:String,user: User) :Observable<any[]>{
-    return this.http.put<any[]>(`${this.apiUrl}/userList/${email}`, user);
+    const headers = this.getHeaders();
+    return this.http.put<any[]>(`${this.apiUrl}/userList/${email}`, user,{headers});
     }
-  
+
   getUserByEmail(UserEmail: String) : Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/userList/${UserEmail}`);
+    const headers = this.getHeaders();
+    return this.http.get<any[]>(`${this.apiUrl}/userList/${UserEmail}`,{headers});
   }
 
   // updateUserDetails(user: User): Observable<any> {

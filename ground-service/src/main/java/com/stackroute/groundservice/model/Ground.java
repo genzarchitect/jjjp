@@ -2,6 +2,7 @@ package com.stackroute.groundservice.model;
 
 import jdk.jfr.Enabled;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -22,11 +23,13 @@ public class Ground {
     private String openingTime;
     private String closingTime;
     private int pricePerSlot;
+    @Version
+    private Long version;
 
     public Ground() {
     }
 
-    public Ground(String groundName, String groundId, Address groundAddress, String groundEquipments, String groundImage, String groundOwnerEmail, Status status, String categories, String openingTime, String closingTime, int pricePerSlot) {
+    public Ground(String groundName, String groundId, Address groundAddress, String groundEquipments, String groundImage, String groundOwnerEmail, Status status, String categories, String openingTime, String closingTime, int pricePerSlot, Long version) {
         this.groundName = groundName;
         this.groundId = groundId;
         this.groundAddress = groundAddress;
@@ -38,6 +41,7 @@ public class Ground {
         this.openingTime = openingTime;
         this.closingTime = closingTime;
         this.pricePerSlot = pricePerSlot;
+        this.version = version;
     }
 
     public String getGroundName() {
@@ -128,6 +132,14 @@ public class Ground {
         this.pricePerSlot = pricePerSlot;
     }
 
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
     @Override
     public String toString() {
         return "Ground{" +
@@ -142,6 +154,7 @@ public class Ground {
                 ", openingTime='" + openingTime + '\'' +
                 ", closingTime='" + closingTime + '\'' +
                 ", pricePerSlot=" + pricePerSlot +
+                ", version=" + version +
                 '}';
     }
 }

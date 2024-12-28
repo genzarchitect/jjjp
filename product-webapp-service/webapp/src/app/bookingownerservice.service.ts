@@ -11,9 +11,16 @@ export class BookingownerserviceService {
   private booking_api_url:string=baseUrl+"/booking/getgoemail";
   constructor(private httpClient:HttpClient) { }
 
+  getHeaders() {
+    const token = localStorage.getItem('authToken');
+    return {
+      Authorization: `Bearer ${token}`
+    };
+  }
+
   getAllBookings(groundOwnerEmail:string):Observable<Booking[]>{
-    
-    return this.httpClient.get<Booking[]>(`${this.booking_api_url}/${groundOwnerEmail}`);
+    const headers = this.getHeaders();
+    return this.httpClient.get<Booking[]>(`${this.booking_api_url}/${groundOwnerEmail}`,{headers});
   }
 
 }
